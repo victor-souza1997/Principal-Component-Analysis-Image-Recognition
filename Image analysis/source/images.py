@@ -21,6 +21,7 @@ class Image():
         return M[0:width*height:4]
         vetorimg = read_pgm(2)
         print(vetorimg)
+
     def addVectorImg(self, img):
         #f=open("C:/Users/victo/OneDrive/Documentos/Codigos/Drone Tracker/Image analysis/utils/imagens/faces/face1.txt", "a+")
         with open("C:/Users/victo/OneDrive/Documentos/Codigos/Drone Tracker/Image analysis/utils/imagens/faces/face1.txt", "a") as myfile:

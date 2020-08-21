@@ -9,12 +9,17 @@ import scipy.linalg as la
 
 #esta classe tem como objetivo de processar às imagens
 class PCA():
-    def __init__(self):
+    def __init__(self, width, height):
         self.img = Image()
+        self.width = width
+        self.height = height
+        self.length = self.height*self.width
         self.A = 0  #matrix variância
         self.m = 0  #vetor média
+    def getLength(self):
+        return self.length
     def getMatrix(self, M):
-        A = np.zeros((2688,2688))
+        A = np.zeros((self.length,self.length))
         M = M.T
         for i in range(0,10):   #função que retorna matrix de covariancia
             A = A + np.outer(M[:,i],M[:,i])#np.outer(M[i,:],M[i,:]) #para a múltiplicação da matrix MxM^T eu utilizei uma função pronta de Python
@@ -22,29 +27,33 @@ class PCA():
     def getEignValues(self, M): #função que retorna o valor dos autovalores da matrix
         V, D = np.linalg.eig(M)
         return np.diagonal(D)
-
-    def meanVector(self, length, N):
-        F = np.zeros(length)
-        self.A = np.zeros((10, length))
+    def meanVector(self, N):
+        F = np.zeros(self.length)
+        self.A = np.zeros((10, self.length))
         for n in range(1,N+1):
-            D = np.array(self.img.readImage(n, length))
+            D = np.array(self.img.readImage(n, self.length))
             F = F + D
             self.A[n-1,:] = D
         self.m = F/N
-
     def getMean(self):
         return self.m
-
     def setVariance(self):
         self.m = np.outer(np.ones(10),self.m)
         self.A = self.A - self.m
         return self.A
-
     def getVariance(self):
         return self.A
+    def getPCA(self, eig, threshold):
+        total = sum(eig)
+        for i in range(self.length):
+            if(threshold < sum(eig[self.length-i:self.length])/total):
+                return i
+            elif(i == self.length):
+                return 0
 
-img = PCA()
-img.meanVector(2688, 10)
+
+img = PCA(26,112)
+img.meanVector(10)
 t0 = time.time()
 img.setVariance()
 
@@ -56,11 +65,13 @@ V, D = np.linalg.eigh(C)#linalg.eig(C)
 #V, D = la.eig(C)
 #print(V.shape, D.shape)
 #plt.plot(V)
-#plt.show()
-#vr_gpu, w_gpu = linalg.eig(C, 'N', 'V')
+stop = img.getPCA(V,0.4)#vr_gpu, w_gpu = linalg.eig(C, 'N', 'V')
+Base = D[:,img.getLength()-stop:img.getLength()]
+print(Base.shape)
 #plt.plot(D)
 #plt.show()
 t1 = time.time()
 
 total = t1-t0
-print(total)
+plt.plot(Base[:,0],Base[:,1],'*')
+plt.show()
