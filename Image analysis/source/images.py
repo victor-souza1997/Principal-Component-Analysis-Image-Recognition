@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 import os, sys
 
 class Image():
-    def getImgVector(self, img):
+    def getImgVector(self, face_set, img):
         ##"""Return a raster of integers from a PGM as a list of lists."""
-        path ='C:/Users/victo/OneDrive/Documentos/Codigos/Drone Tracker/Image analysis/utils/conteudo/s2/'+str(img)+'.pgm'
+        path ='C:/Users/victo/OneDrive/Documentos/Codigos/Drone Tracker/Image analysis/utils/conteudo/s'+str(face_set)+'/'+str(img)+'.pgm'
         pgmf = open(path, 'rb')
         header = pgmf.readline()
         assert header[:2] == b'P5'
@@ -22,9 +22,9 @@ class Image():
         vetorimg = read_pgm(2)
         print(vetorimg)
 
-    def addVectorImg(self, img):
+    def addVectorImg(self, face_set,img):
         #f=open("C:/Users/victo/OneDrive/Documentos/Codigos/Drone Tracker/Image analysis/utils/imagens/faces/face1.txt", "a+")
-        with open("C:/Users/victo/OneDrive/Documentos/Codigos/Drone Tracker/Image analysis/utils/imagens/faces/face2.txt", "a") as myfile:
+        with open("C:/Users/victo/OneDrive/Documentos/Codigos/Drone Tracker/Image analysis/utils/imagens/faces/face"+str(face_set)+".txt", "a") as myfile:
             np.savetxt(myfile,img)
         myfile.close()
     def readImage(self, face_set, n, length):
@@ -38,14 +38,15 @@ class Image():
 
 #width = 92 and length = 112 in all the imagens
 #n = 10
-#width = 23
-#length = 112
-#img = Image()
+width = 23
+length = 112
+img = Image()
+face_set = 1
 #for i in range(1,11):#
-#    M = img.getImgVector(i)
-#    print(M.shape)#
-#    img.addVectorImg(M)
-#x = img.readImage(1, 4,  width*length).T
-#img.showImage(x,  length, width)
+    #M = img.getImgVector(face_set,i)
+    #print(M.shape)#
+    #img.addVectorImg(face_set, M)
+x = img.readImage(face_set, 1,  width*length).T
+img.showImage(x,  length, width)
 
 #def reScaleImage(self, M, resize):

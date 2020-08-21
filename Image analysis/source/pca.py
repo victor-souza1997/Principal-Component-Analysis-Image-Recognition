@@ -40,6 +40,9 @@ class PCA():
         self.m = F/N
     def getMean(self):
         return self.m
+    def compare(self, imageCompare):
+        self.Thau = imageCompare - self.m
+        return self.getWeights(self.Thau)
     def setVariance(self):
         self.m = np.outer(np.ones(10),self.m)
         self.A = self.A - self.m
@@ -61,7 +64,6 @@ img = PCA(23,112)
 img.meanVector(1,10)
 t0 = time.time()
 img.setVariance()
-
 M = (img.getVariance())
 C = (img.getMatrix(M))
 #print(C.shape)
@@ -72,7 +74,7 @@ V, D = np.linalg.eigh(C)#linalg.eig(C)
 #plt.plot(V)
 stop = img.getPCA(V,0.7)#vr_gpu, w_gpu = linalg.eig(C, 'N', 'V')
 Base = D[:,img.getLength()-stop:img.getLength()]
-print(img.getWeights(Base).shape)
+print(img.getWeights(Base))
 #plt.plot(D)
 #plt.show()
 t1 = time.time()
