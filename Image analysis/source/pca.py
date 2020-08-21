@@ -16,6 +16,8 @@ class PCA():
         self.length = self.height*self.width
         self.A = 0  #matrix variância
         self.m = 0  #vetor média
+    def show(self, img):
+        self.img.showImage(img, self.height, self.width)
     def getLength(self):
         return self.length
     def getMatrix(self, M):
@@ -27,13 +29,14 @@ class PCA():
     def getEignValues(self, M): #função que retorna o valor dos autovalores da matrix
         V, D = np.linalg.eig(M)
         return np.diagonal(D)
-    def meanVector(self, N):
+    def meanVector(self, image_set, N):
         F = np.zeros(self.length)
         self.A = np.zeros((10, self.length))
         for n in range(1,N+1):
-            D = np.array(self.img.readImage(n, self.length))
+            D = np.array(self.img.readImage(image_set,n, self.length))
             F = F + D
             self.A[n-1,:] = D
+            #self.show(D)
         self.m = F/N
     def getMean(self):
         return self.m
@@ -50,10 +53,12 @@ class PCA():
                 return i
             elif(i == self.length):
                 return 0
+    def getWeights(self, eigvector):
+        print(eigvector.shape, self.A[1,:].shape)
+        return eigvector.T.dot(self.A[1,:])
 
-
-img = PCA(26,112)
-img.meanVector(10)
+img = PCA(23,112)
+img.meanVector(1,10)
 t0 = time.time()
 img.setVariance()
 
@@ -65,13 +70,12 @@ V, D = np.linalg.eigh(C)#linalg.eig(C)
 #V, D = la.eig(C)
 #print(V.shape, D.shape)
 #plt.plot(V)
-stop = img.getPCA(V,0.4)#vr_gpu, w_gpu = linalg.eig(C, 'N', 'V')
+stop = img.getPCA(V,0.7)#vr_gpu, w_gpu = linalg.eig(C, 'N', 'V')
 Base = D[:,img.getLength()-stop:img.getLength()]
-print(Base.shape)
+print(img.getWeights(Base).shape)
 #plt.plot(D)
 #plt.show()
 t1 = time.time()
 
 total = t1-t0
-plt.plot(Base[:,0],Base[:,1],'*')
-plt.show()
+print(total)
