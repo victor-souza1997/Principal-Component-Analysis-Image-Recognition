@@ -4,8 +4,10 @@ The idea behind this project was to show that it's possible to make a software c
 
 The created program first identifies where the car's plate is located, then it cuts the section where it is, and then tries to find all the plate's characters by making the bigger image of the plate into small ones where the image of the characters could be easily determined.  
 
-## Objective
-- The objective of the software is to find the caracters in the car's plate of the picture; 
+## Run Time Steps
+The following pictures show how the software must behave.
+
+- The objective of the software is to find the caracters in the car's plate of the picture bellow; 
 
 ![image](utils/../Image%20analysis/utils/Figure_1.png)
 
@@ -17,9 +19,14 @@ The created program first identifies where the car's plate is located, then it c
 
 ![image](utils/../Image%20analysis/utils/cutted_plate.png)
 
-- Then it looks for the caracters in the picture.
+- Then it looks for the caracters in the picture;
 
 ![image](utils/../Image%20analysis/utils/caracters_found.png)
+
+- The result then is shown in the terminal.
+
+![image](utils/../Image%20analysis/utils/result.png)
+
 
 ### Notice
 
