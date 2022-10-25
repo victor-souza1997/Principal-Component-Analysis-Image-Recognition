@@ -4,7 +4,13 @@ The idea behind this project was to show that it's possible to make a software c
 
 The created program first identifies where the car's plate is located, then it cuts the section where it is, and then tries to find all the plate's characters by making the bigger image of the plate into small ones where the image of the characters could be easily determined.  
 
+#
+
 ## Run Time Steps
+To run the software, to to folder /source and type:
+```bash
+python3 main.py
+```
 The following pictures show how the software must behave.
 
 - The objective of the software is to find the caracters in the car's plate of the picture bellow; 
