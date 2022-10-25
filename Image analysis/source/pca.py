@@ -100,7 +100,7 @@ class AppPCA(): #o objetivo dessa classe é importar todos os métodos da classe
             np.savetxt(myfile,content)
         myfile.close()
     def readPCA(self, namefile): #este método ler o arquivos
-        return np.loadtxt(self.fileDir+"/utils/dados/"+namefile+".txt",delimiter="\n")
+        return np.loadtxt(self.fileDir+"/utils/dados/"+namefile+".txt")
     def sumMatrix(self, M, position_y, position_x, height, width, error): #este método cria o mapa de errors
         M[position_y:position_y+height,position_x:position_x+width] =  error*np.ones((height, width))+M[position_y:position_y+height,position_x:position_x+width]
         return M
