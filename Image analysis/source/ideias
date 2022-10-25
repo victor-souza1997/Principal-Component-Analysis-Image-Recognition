@@ -1,6 +1,0 @@
-
-
-
-1 - para analisar cada parte da imagem, criarem um método que pegue uma determinada parte de uma grande image. Ele irá
-usar o método .reshape para botar a imagem no formato em que eu possa modificá-la. Depois disso, utilizarei outro método
-para calcular os vetores bases da imagem original, mas com a resolução rebaixada
