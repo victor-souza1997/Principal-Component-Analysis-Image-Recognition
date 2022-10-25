@@ -9,23 +9,23 @@ The following pictures show how the software must behave.
 
 - The objective of the software is to find the caracters in the car's plate of the picture bellow; 
 
-![image](utils/../Image%20analysis/utils/Figure_1.png)
+![image](utils/Figure_1.png)
 
 - The program finds where the plate is more or less located;
 
-![image](utils/../Image%20analysis/utils/plate_found.png)
+![image](/utils/plate_found.png)
 
 - Then it cuts the region where the plate is;
 
-![image](utils/../Image%20analysis/utils/cutted_plate.png)
+![image](utils/cutted_plate.png)
 
 - Then it looks for the caracters in the picture;
 
-![image](utils/../Image%20analysis/utils/caracters_found.png)
+![image](utils/caracters_found.png)
 
 - The result then is shown in the terminal.
 
-![image](utils/../Image%20analysis/utils/result.png)
+![image](utils/result.png)
 
 
 ### Notice
