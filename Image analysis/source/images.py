@@ -33,7 +33,7 @@ class Imageprocessing():
             np.savetxt(myfile,img)
         myfile.close()
     def readImagevector(self, face_set, n, length):
-        return np.loadtxt(self.fileDir+"/utils/imagens/"+self.folder+"/"+self.files+str(face_set)+".txt",delimiter="\n")[(n-1)*length:length*n]
+        return np.loadtxt(self.fileDir+"/utils/imagens/"+self.folder+"/"+self.files+str(face_set)+".txt")[(n-1)*length:length*n]
     def showImage(self, img, length, width):
         im = img.reshape(length, width)
         plt.gray()
@@ -42,7 +42,7 @@ class Imageprocessing():
 
     def setWholeSet(self, setN):
         for i in range(1,setN+1):
-            img = np.loadtxt(self.fileDir+"/utils/imagens/"+self.folder+"/"+self.files+str(face_set)+".txt",delimiter="\n")
+            img = np.loadtxt(self.fileDir+"/utils/imagens/"+self.folder+"/"+self.files+str(face_set)+".txt")
             with open(self.fileDir+"/utils/imagens/faces/face.txt", "a") as myfile:
                 np.savetxt(myfile,img)
             myfile.close()
